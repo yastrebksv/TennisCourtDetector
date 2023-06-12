@@ -26,8 +26,8 @@ It was implemented 2 types of postprocessing techniques:
 ### 1. Refine keypoints using classical computer vision
 Lets apply our intermediate model to one image <br>
 ![](imgs/net_prediction.png) <br>
-Af first glance, keypoints prediction is quite good but if we zoom, for example the fifth point, we can see that prediction is not perfect. 
-![](imgs/crop_example.png) <br>
+Af first glance, keypoints prediction is quite good but if we zoom, for example the fifth point, we can see that prediction is not perfect. <br>
+![](imgs/crop_example.png) 
 To overcome this issue we will exctract white pixels from crop, detect lines and get intersection of these lines by using classical computer vision techniques. 
 ![](imgs/kps_refine.png)
 ### 2. Use homography to reconstruct shifted keypointes.
@@ -44,4 +44,4 @@ points location. It can be helpful, for example, in case of occlusion.
 ## How to train
 
 ## Infer in video 
-![](video_infer) <br>
+![](imgs/video_infer.gif) 
