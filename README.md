@@ -1,2 +1,46 @@
 # TennisCourtDetector
 Deep learning network for detecting tennis court
+
+It was developed a deep learning network to detect tennis court keypoints from broadcast videos. The proposed heatmap-based deep learning
+network allows to detect 14 points of tennis court. Postprocessing techniques (based on classical computer vision methods) were implemented to enhance 
+net predictions.
+
+![](imgs/dataset_example.png)
+
+## Dataset
+The dataset consists of 8841 images, which were separeted to train set (75%) and validation set (25%). Each image has 14 annotated points. 
+The resolution of images is 1280×720. This dataset contains all court types (hard, clay, grass).
+### Dataset collection
+This dataset was created in semi-automated way. Video highlights from different tournaments with length from 2 to 3 minutes were downloaded from YouTube. 
+Frames from video were extracted with step 50 frames to run them through classical computer vision algorithm. The quality of existing computer vision 
+algorithm is not good therefore the resulting images were filtered manually.    
+
+## Model architecture
+Proposed deep learning network is very similar to TrackNet architecture. 
+![](imgs/tracknet_arch.png)
+The difference is that input tensor consists of just 1 image (instead of 3 in TrackNet) and output tensor has 15 channels (14 from dataset and one additional
+point is center of tennis court). We used additional point for better convergence. The resolution of input and output image is 640x360.
+
+## Postporcessing
+It was implemented 2 types of postprocessing techniques:
+### 1. Refine keypoints using classical computer vision
+Lets apply our model to one image 
+![](imgs/net_prediction.png)
+Af first glance, keypoints prediction is quite good but if we zoom, for example the firth point, we can see that prediction is not perfect. 
+![](imgs/crop_example.png)
+To overcome this issue we will exctract white pixels from crop, detect lines and get intersection of these lines by using classical computer vision techniques. 
+![](imgs/kps_refine.png)
+### 2. Use homography to reconstruct shifted keypointes.
+<img>
+The main thing is that we can compare predicted points with reference ones by using homography matrix. To detect homography matrix we use 4 predicted points
+and 4 points from reference court. Resulting matrix gives us one-to-one correspondense and we can move predicted point to the right position using reference
+points location. It can be helpful, for example, in case of occlusion.
+<img>
+
+## Evaluation (metrics)
+
+## Pretrained model
+
+## How to train
+
+## Infer in video 
