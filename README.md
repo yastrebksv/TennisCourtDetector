@@ -17,8 +17,8 @@ algorithm is not good therefore the resulting images were filtered manually.
 
 ## Model architecture
 Proposed deep learning network is very similar to TrackNet architecture. 
-![](imgs/tracknet_arch.png)
-The difference is that input tensor consists of just 1 image (instead of 3 in TrackNet) and output tensor has 15 channels (14 from dataset and one additional
+![](imgs/tracknet_arch.png) 
+<br> The difference is that input tensor consists of just 1 image (instead of 3 in TrackNet) and output tensor has 15 channels (14 from dataset and one additional
 point is center of tennis court). We used additional point for better convergence. The resolution of input and output image is 640x360.
 
 ## Postporcessing
