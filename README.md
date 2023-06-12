@@ -24,18 +24,18 @@ point is center of tennis court). We used additional point for better convergenc
 ## Postporcessing
 It was implemented 2 types of postprocessing techniques:
 ### 1. Refine keypoints using classical computer vision
-Lets apply our model to one image 
-![](imgs/net_prediction.png)
-Af first glance, keypoints prediction is quite good but if we zoom, for example the firth point, we can see that prediction is not perfect. 
-![](imgs/crop_example.png)
+Lets apply our intermediate model to one image <br>
+![](imgs/net_prediction.png) <br>
+Af first glance, keypoints prediction is quite good but if we zoom, for example the fifth point, we can see that prediction is not perfect. 
+![](imgs/crop_example.png) <br>
 To overcome this issue we will exctract white pixels from crop, detect lines and get intersection of these lines by using classical computer vision techniques. 
 ![](imgs/kps_refine.png)
 ### 2. Use homography to reconstruct shifted keypointes.
-<img>
+![](imgs/homography.png) <br>
 The main thing is that we can compare predicted points with reference ones by using homography matrix. To detect homography matrix we use 4 predicted points
 and 4 points from reference court. Resulting matrix gives us one-to-one correspondense and we can move predicted point to the right position using reference
 points location. It can be helpful, for example, in case of occlusion.
-<img>
+![](imgs/homography_example.png) <br>
 
 ## Evaluation (metrics)
 
@@ -44,3 +44,4 @@ points location. It can be helpful, for example, in case of occlusion.
 ## How to train
 
 ## Infer in video 
+![](video_infer) <br>
