@@ -9,7 +9,9 @@ net predictions.
 
 ## Dataset
 The dataset consists of 8841 images, which were separeted to train set (75%) and validation set (25%). Each image has 14 annotated points. 
-The resolution of images is 1280×720. This dataset contains all court types (hard, clay, grass).
+The resolution of images is 1280×720. This dataset contains all court types (hard, clay, grass). Click the link 
+https://drive.google.com/file/d/1lhAaeQCmk2y440PmagA0KmIVBIysVMwu/view?usp=drive_link to download the dataset
+
 ### Dataset collection
 This dataset was created in semi-automated way. Video highlights from different tournaments with length from 2 to 3 minutes were downloaded from YouTube. 
 Frames from video were extracted with step 50 frames to run them through classical computer vision algorithm. The quality of existing computer vision 
@@ -51,8 +53,13 @@ the final metrics.
 | BM + refining kps + homography | 0.963     | 0.961    | 1.83        | 
 
 ## Pretrained model
+You can check these weights https://drive.google.com/file/d/1f-Co64ehgq4uddcQm1aFBDtbnyZhQvgG/view?usp=drive_link to try model
 
 ## How to train
+1. Clone the repository `https://github.com/yastrebksv/TennisCourtDetector.git`
+2. Run `pip install -r requirements.txt` to install packages required
+3. Put dataset into `/data` folder
+4. Run `python main.py` to start training
 
 ## Infer in video 
 ![](imgs/video_infer.gif) 
