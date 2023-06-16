@@ -38,6 +38,17 @@ points location. It can be helpful, for example, in case of occlusion.
 ![](imgs/homography_example.png) <br>
 
 ## Evaluation (metrics)
+We will assume that keypoint is accurately detected if the Euclidean distance between the model prediction and the ground truth is less than 7 pixels.
+Based on this assumption we can calculate true positive and false positive rates. The overall performance in terms of precision, accuracy and median 
+distance between predicted point and ground truth you can see in the table below. We will also show how postprocessing techniques affect 
+the final metrics.
+
+|                                | Precision | Accuracy | Median dist |
+| -----------                    | --------- | -------  |  ------     | 
+| Base model (BM)                | 0.936     | 0.933    | 2.83        |
+| BM + refining kps              | 0.939     | 0.936    | 2.23        |
+| BM + homography                | 0.961     | 0.959    | 2.27        |  
+| BM + refining kps + homography | 0.963     | 0.961    | 1.83        | 
 
 ## Pretrained model
 
