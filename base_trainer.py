@@ -14,6 +14,7 @@ def train(model, train_loader, optimizer, criterion, device, epoch, max_iters=10
 
         loss.backward()
         optimizer.step()
+        optimizer.zero_grad()
         print('train, epoch = {}, iter_id = {}/{}, loss = {}'.format(epoch, iter_id, max_iters, loss.item()))
         losses.append(loss.item())
         if iter_id > max_iters:
