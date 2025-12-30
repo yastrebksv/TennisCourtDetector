@@ -16,7 +16,7 @@ for i in range(len(court_ref.court_conf)):
 
 def get_trans_matrix(points):
     matrix_trans = None
-    dist_max = np.Inf
+    dist_max = np.inf
     for conf_ind in range(1, 13):
         conf = court_ref.court_conf[conf_ind]
 
@@ -28,7 +28,7 @@ def get_trans_matrix(points):
             dists = []
             for i in range(12):
                 if i not in inds and points[i][0] is not None:
-                    dists.append(distance.euclidean(points[i], trans_kps[i]))
+                    dists.append(distance.euclidean(points[i], trans_kps[i][0]))
             dist_median = np.mean(dists)
             if dist_median < dist_max:
                 matrix_trans = matrix

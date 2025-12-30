@@ -1,0 +1,14 @@
+[project]
+name = "tenniscourtdetector"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.10.8",
+    "opencv-python>=4.12.0.88",
+    "scipy>=1.16.3",
+    "tensorboardx>=2.6.4",
+    "torch>=2.9.1",
+    "tqdm>=4.67.1",
+]

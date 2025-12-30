@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 import torch.nn.functional as F
+from tqdm import tqdm
 from utils import is_point_in_image
 from scipy.spatial import distance
 from postprocess import postprocess
@@ -14,7 +15,10 @@ def val(model, val_loader, criterion, device, epoch):
     losses = []
     tp, fp, fn, tn = 0, 0, 0, 0
     max_dist = 7
-    for iter_id, batch in enumerate(val_loader):
+    
+    # Create tqdm progress bar for validation
+    pbar = tqdm(enumerate(val_loader), total=len(val_loader), desc=f'Epoch {epoch} [Val]')
+    for iter_id, batch in pbar:
         with torch.no_grad():
             batch_size = batch[0].shape[0]
             out = model(batch[0].float().to(device))
@@ -46,9 +50,10 @@ def val(model, val_loader, criterion, device, epoch):
             eps = 1e-15
             precision = round(tp / (tp + fp + eps), 5)
             accuracy = round((tp + tn) / (tp + tn + fp + fn + eps), 5)
-            print('val, epoch = {}, iter_id = {}/{}, loss = {}, tp = {}, fp = {}, fn = {}, tn = {}, precision = {}, '
-                  'accuracy = {}'.format(epoch, iter_id, len(val_loader), round(loss.item(), 5), tp, fp, fn, tn,
-                                         precision, accuracy))
+            
+            # Update progress bar with metrics
+            pbar.set_postfix({'loss': f'{loss.item():.4f}', 'acc': f'{accuracy:.4f}'})
+            
             losses.append(loss.item())
     return np.mean(losses), tp, fp, fn, tn, precision, accuracy
 
